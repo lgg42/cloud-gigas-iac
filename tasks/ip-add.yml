@@ -1,0 +1,15 @@
+- name: Add address {{ item.value.ip_priv_address | default("unknow address") }} to network
+  uri:
+    url: https://apimadrid.gigas.com/network/{{ network_id }}/ip_address
+    method: POST
+    headers:
+      Authorization: Gigas token={{ auth_result.json.token }}
+    body: "address={{ item.value.ip_priv_address }}&\
+      netmask={{ item.value.ip_priv_netmask }}&\
+      broadcast={{ ip_priv_broadcast }}&\
+      network_address={{ ip_priv_network }}&\
+      gateway={{ item.value.ip_priv_gateway }}"
+    status_code: 201,200
+    return_content: yes
+  register: add_ip_result
+  when: item.value.ip_priv_address not in ipaddr_list_result | json_query('json[*].address')

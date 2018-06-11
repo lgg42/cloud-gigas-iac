@@ -1,0 +1,9 @@
+- name: Get Auth Token
+  uri:
+    url: https://apimadrid.gigas.com/token
+    method: POST
+    body: "login={{ api_user }}&password={{ api_password }}"
+    validate_certs: no
+    return_content: yes
+  register: auth_result
+

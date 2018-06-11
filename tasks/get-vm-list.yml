@@ -1,0 +1,9 @@
+- name: Get VMs list
+  uri:
+    url: https://apimadrid.gigas.com/virtual_machines
+    method: GET
+    headers:
+      Authorization: Gigas token={{ auth_result.json.token }}
+    status_code: 201,200
+    return_content: yes
+  register: vm_list_result

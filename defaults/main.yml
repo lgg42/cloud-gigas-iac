@@ -1,0 +1,30 @@
+---
+# defaults file for cloud-gigas-iac
+
+# Gigas API User (for desired datacenter)
+# Used by task: auth.yml
+api_user:
+
+# Gigas API User password (for desired datacenter)
+# Used by task: auth.yml
+api_password:
+
+# Location ID
+# Used in tasks: all tasks
+location_id:
+
+# Initial root user password
+# Used by task: create_vm.yml
+root_password:
+
+# Distro family for template listing
+distro: Centos
+
+# Network VLAN ID (for adding new IP addresses)
+# Used by tasks: ip-add.yml, create-vm.yml
+network_id:
+
+# Network address and network broadcast address (for adding new IP address)
+# Used by task: ip-add.yml
+ip_priv_network:
+ip_priv_broadcast:

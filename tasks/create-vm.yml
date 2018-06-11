@@ -1,0 +1,28 @@
+- name: Create VM {{ item.value.hostname | default("unknow hostname") }}
+  uri:
+    url: https://apimadrid.gigas.com/virtual_machine
+    method: POST
+    headers:
+      Authorization: Gigas token={{ auth_result.json.token }}
+    body: "memory={{ item.value.ram }}&\
+      cpus={{ item.value.cpu  }}&\
+      hostname={{ item.value.hostname }}&\
+      label={{ item.value.label }}&\
+      primary_disk_size={{ item.value.disk }}&\
+      data_store_group_primary_id={{ item.value.disk_type }}&\
+      swap_disk_size={{ item.value.swap }}&\
+      data_store_group_swap_id={{ item.value.swap_type }}&\
+      template_id={{ item.value.template_id }}&\
+      location_id={{ location_id }}&\
+      initial_root_password={{ root_password }}&\
+      primary_network_id={{ item.value.ip_priv_net_id }}&\
+      selected_ip_address={{ item.value.ip_priv_address }}&\
+      selected_ip_netmask={{ item.value.ip_priv_netmask }}&\
+      selected_ip_gateway={{ item.value.ip_priv_gateway }}&\
+      {% if item.value.disk2 is defined %}secondary_disk_size={{ item.value.disk2 }}&data_store_group_secondary_id={{ item.value.disk2_type  }}{% endif %}"
+    timeout: 600
+    status_code: 202,200
+    validate_certs: no
+    return_content: yes
+  register: create_result
+  when: item.value.hostname not in vm_list_result | json_query('json[*].hostname')

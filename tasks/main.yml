@@ -1,0 +1,19 @@
+---
+# tasks file for cloud-gigas-iac
+
+- name: Get Auth Token
+  import_tasks: auth.yml
+
+- name: Get VM list
+  import_tasks: get-vm-list.yml
+
+- name: Get IP addresses
+  import_tasks: get-ipaddr-list.yml
+
+- name: Add IP addresses to network
+  include_tasks: ip-add.yml
+  with_dict: "{{ vms }}"
+
+- name: Create Virtual Machines
+  include_tasks: create-vm.yml
+  with_dict: "{{ vms }}"
