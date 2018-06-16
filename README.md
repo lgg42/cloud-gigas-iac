@@ -14,10 +14,10 @@ Role Variables
 
 Variables that can be placed either in defaults/main.yml or vars/main.yml.
 
-Some of then should me placed within *group_vars* or *host_var* like **location_id** and **network_id**.
+Some of then should be placed within *group_vars* or *host_var* like **location_id** and **network_id**.
 Consider vaulting sensitive ones.
 
-|Varriable|Description| Used by task|
+|Variable|Description| Used by task|
 |--|--|--|
 |**api_user**|Gigas API User (for desired datacenter)|auth.yml|
 |**api_password**|Gigas API User password (for desired datacenter)|auth.yml|
