@@ -128,4 +128,4 @@ GNU GPLv3
 Author Information
 ------------------
 
-Luis Garnica Guilarte (lgarnica@geoblink.com)
+Luis Garnica Guilarte (luis.garnica@belvo.com)
